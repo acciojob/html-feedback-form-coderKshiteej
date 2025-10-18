@@ -1,16 +1,179 @@
 <!DOCTYPE html>
-
-<html>
-
+<html lang="en">
 <head>
-	<link rel="stylesheet" href="styles.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Feedback Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+            width: 100%;
+            max-width: 500px;
+        }
+        
+        h1 {
+            color: #333;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 28px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            color: #333;
+            font-weight: bold;
+            font-size: 14px;
+        }
+        
+        input[type="text"],
+        input[type="url"],
+        input[type="color"],
+        input[type="range"] {
+            width: 100%;
+            padding: 12px;
+            border: 2px solid #ddd;
+            border-radius: 5px;
+            font-size: 14px;
+            transition: border-color 0.3s ease;
+            box-sizing: border-box;
+        }
+        
+        input[type="text"]:focus,
+        input[type="url"]:focus,
+        input[type="color"]:focus {
+            outline: none;
+            border-color: #667eea;
+            box-shadow: 0 0 5px rgba(102, 126, 234, 0.3);
+        }
+        
+        input[type="range"] {
+            padding: 0;
+            height: 8px;
+            cursor: pointer;
+        }
+        
+        .range-value {
+            display: inline-block;
+            margin-left: 10px;
+            color: #667eea;
+            font-weight: bold;
+        }
+        
+        .submit-btn {
+            width: 100%;
+            padding: 12px;
+            background-color: #667eea;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-top: 10px;
+        }
+        
+        .submit-btn:hover {
+            background-color: #764ba2;
+        }
+        
+        .submit-btn:active {
+            transform: scale(0.98);
+        }
+        
+        .required {
+            color: #e74c3c;
+        }
+    </style>
 </head>
-
 <body>
-	<!-- the entire body must be written by student -->
-    <script type="text/javascript" src="./script.js">
-</script>
-
+    <div class="container">
+        <h1>Feedback Form</h1>
+        
+        <form method="POST" action="#">
+            <!-- Name Input -->
+            <div class="form-group">
+                <label for="name">Name <span class="required">*</span></label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    name="name" 
+                    minlength="3" 
+                    maxlength="50" 
+                    required
+                    placeholder="Enter your name"
+                >
+            </div>
+            
+            <!-- Portfolio URL Input -->
+            <div class="form-group">
+                <label for="portfolio">Portfolio <span class="required">*</span></label>
+                <input 
+                    type="url" 
+                    id="portfolio" 
+                    name="portfolio" 
+                    required
+                    placeholder="https://example.com/portfolio"
+                >
+            </div>
+            
+            <!-- Favorite Color Input -->
+            <div class="form-group">
+                <label for="favColor">Favorite Color <span class="required">*</span></label>
+                <input 
+                    type="color" 
+                    id="favColor" 
+                    name="favColor" 
+                    required
+                >
+            </div>
+            
+            <!-- Likeness Range Input -->
+            <div class="form-group">
+                <label for="likeness">Likeness <span class="required">*</span></label>
+                <div>
+                    <input 
+                        type="range" 
+                        id="likeness" 
+                        name="likeness" 
+                        min="1" 
+                        max="100" 
+                        value="50"
+                    >
+                    <span class="range-value"><span id="rangeValue">50</span>/100</span>
+                </div>
+            </div>
+            
+            <!-- Submit Button -->
+            <button type="submit" class="submit-btn">Submit Feedback</button>
+        </form>
+    </div>
+    
+    <script>
+        const rangeInput = document.getElementById('likeness');
+        const rangeValue = document.getElementById('rangeValue');
+        
+        rangeInput.addEventListener('input', function() {
+            rangeValue.textContent = this.value;
+        });
+    </script>
 </body>
-
 </html>
